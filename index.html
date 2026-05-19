@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- SEO -->
+  <title>ANTIK — Photographer · Motion Designer · Video Editor</title>
+  <meta name="description" content="ANTIK is a multidisciplinary visual artist specializing in photography, motion design, and video editing. An immersive 3D cinematic portfolio experience." />
+  <meta name="author" content="Antik" />
+  <meta property="og:title" content="ANTIK — Visual Artist Portfolio" />
+  <meta property="og:description" content="Photographer · Motion Designer · Video Editor — An immersive 3D portfolio." />
+  <meta property="og:type" content="website" />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>✦</text></svg>" />
+
+  <!-- Prevent Flash of Unstyled Content (FOUC) while Vite loads CSS/JS -->
+  <style>
+    body { margin: 0; background: #000; overflow: hidden; }
+    #preloader { position: fixed; inset: 0; background: #000; z-index: 99999; display: flex; align-items: center; justify-content: center; flex-direction: column; }
+  </style>
+</head>
+<body>
+
+  <!-- ═══ CUSTOM CURSOR ═══ -->
+  <div class="cursor" id="cursor">
+    <div class="cursor__dot"></div>
+    <div class="cursor__ring"></div>
+  </div>
+
+  <!-- ═══ PERSISTENT THREE.JS BACKGROUND — DISABLED ═══ -->
+  <canvas id="bg-canvas" style="display:none;"></canvas>
+
+  <!-- ═══ ACT 1: PRELOADER — LENS FOCUS RING ═══ -->
+  <div id="preloader" class="preloader">
+    <!-- Aesthetic bokeh background -->
+    <canvas id="preloader-bg" class="preloader__bg"></canvas>
+
+    <!-- Rotating lens focus ring (real image) -->
+    <div class="preloader__lens-container">
+      <img src="/lens-ring.png" alt="" class="preloader__lens" id="preloader-lens" />
+      <!-- ANTIK text — starts blurred, comes into focus -->
+      <div class="preloader__focus-text" id="preloader-text">
+        <span class="preloader__brand">ANTIK</span>
+        <span class="preloader__subtitle">Photographer · Motion Designer · Video Editor</span>
+      </div>
+    </div>
+
+    <!-- Progress -->
+    <div class="preloader__ui">
+      <div class="preloader__bar-track">
+        <div class="preloader__bar-fill" id="preloader-bar"></div>
+      </div>
+      <div class="preloader__percent" id="preloader-percent">0%</div>
+    </div>
+  </div>
+
+  <!-- ═══ MAIN CONTENT ═══ -->
+  <main id="main-content">
+
+    <!-- ═══ ACT 2: HERO — SCROLL-DRIVEN FRAME SEQUENCE ═══ -->
+    <section id="act-hero" class="act" aria-label="Hero">
+      <div class="hero__sticky">
+        <!-- Canvas for frame-by-frame scrubbing -->
+        <canvas id="hero-canvas" class="hero__canvas"></canvas>
+
+        <!-- Warm glow overlay for lens transition -->
+        <div class="hero__lens-glow" id="hero-lens-glow"></div>
+
+        <!-- Blackout layer removed for seamless Museum transition -->
+
+        <!-- Text overlay -->
+        <div class="hero__overlay" id="hero-overlay">
+          <div class="hero__overline">Welcome to the Experience</div>
+          <h1 class="hero__name">ANTIK</h1>
+          <p class="hero__tagline">Photographer · Motion Designer · Video Editor</p>
+        </div>
+
+        <!-- Scroll indicator -->
+        <div class="hero__scroll-cue" id="hero-scroll-cue">
+          <span>Scroll to Explore</span>
+          <div class="hero__scroll-line"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ ACT 3–7: THE MUSEUM — Zero-Gravity Obsidian World ═══ -->
+
+    <!-- Fixed full-screen Three.js canvas (appears after hero exits) -->
+    <canvas id="museum-canvas" aria-hidden="true"></canvas>
+
+    <!-- Glassmorphism focus overlay (appears on artwork click) -->
+    <div id="museum-overlay" aria-live="polite"></div>
+
+    <!-- Scroll runway: gives the museum deep scroll space -->
+    <section id="act-museum" class="act" aria-label="Portfolio Museum" style="height: 400vh; position: relative; background: transparent;">
+    </section>
+
+    <!-- ═══ ACT 8: CONTACT — CTA FINALE ═══ -->
+    <section id="act-contact" class="act" aria-label="Contact">
+      <div class="contact__bg" id="contact-bg"></div>
+      <div class="contact__card glass">
+        <span class="overline">Get In Touch</span>
+        <h2 class="section-title">Let's Create<br/>Together</h2>
+        <p class="contact__subtitle">Have a project in mind? Let's turn your vision into something extraordinary.</p>
+        <div class="contact__links">
+          <a href="mailto:antik@example.com" class="contact__link" data-cursor-hover>
+            <span class="contact__link-icon">✉</span>
+            <span>antik@example.com</span>
+          </a>
+          <a href="https://instagram.com/antik" target="_blank" rel="noopener" class="contact__link" data-cursor-hover>
+            <span class="contact__link-icon">◎</span>
+            <span>@antik</span>
+          </a>
+          <a href="https://behance.net/antik" target="_blank" rel="noopener" class="contact__link" data-cursor-hover>
+            <span class="contact__link-icon">◆</span>
+            <span>Behance Portfolio</span>
+          </a>
+        </div>
+        <button class="contact__cta" id="contact-cta" data-cursor-hover>Start a Project</button>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+      <p>© 2026 ANTIK. All rights reserved. Built with ✦</p>
+    </footer>
+  </main>
+
+  <script type="module" src="/src/main.ts"></script>
+</body>
+</html>
