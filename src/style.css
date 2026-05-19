@@ -310,6 +310,8 @@ ul, ol { list-style: none; }
   width: 100vw; height: 100vh;
   overflow: hidden;
   background: var(--bg);
+  /* Keep Hero Canvas on top of the Museum Canvas (z-index: 10) during the lens zoom */
+  z-index: 12;
   /* Force hardware acceleration for buttery scroll compositing */
   will-change: transform;
   transform: translateZ(0);
